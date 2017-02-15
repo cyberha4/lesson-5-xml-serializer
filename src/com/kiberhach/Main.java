@@ -21,28 +21,23 @@ public class Main {
         People people = new People("testPeopleXml",22,"tt");
         Student student = new Student("student", 44);
 
-        JarClassLoader loader = new JarClassLoader("Kubator.jar");
-        System.out.println(((loader.loadClass("com.kiberhach.Animal")) == null));
-
-        Class c = Class.forName("com.kiberhach.Animal");
-        c.newInstance();
-        System.out.println(c);
+        String fileName = "MyJar.jar";
 
         Downloader downloader = new Downloader("https://github.com/kiberhach/lesson-5-xml-serializer/raw/master/Kubator.jar");
-        downloader.download("MyJar.jar");
+        downloader.download(fileName);
 
-        //System.exit(1);
+        JarClassLoader loader = new JarClassLoader(fileName);
+        //System.out.println(((loader.loadClass("com.kiberhach.Animal")) == null));
 
+        Class c = Class.forName("com.kiberhach.Animal");
+        Object obj = c.newInstance();
+        System.out.println(c);
 
-        //serialize(people);
-        //serialize(student);
+        serialize(obj);
 
-        Deserializer deser = new Deserializer("com.kiberhach.People.xml");
-        //Deserializer deser2 = new Deserializer("Student.xml");
+        Deserializer deser = new Deserializer("com.kiberhach.Animal.xml");
 
         System.out.println(deser.getInstace());
-        //System.out.println(deser2.getInstace());
-
     }
 
     public static void serialize(Object obj) throws Exception {
@@ -74,7 +69,7 @@ public class Main {
             e1.appendChild(e);
         }
 
-        String fileName = "test/" + className+".xml";
+        String fileName = className+".xml";
 
         TransformerFactory transformerFactory =
                 TransformerFactory.newInstance();
