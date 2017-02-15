@@ -21,14 +21,14 @@ public class Main {
         People people = new People("testPeopleXml",22,"tt");
         Student student = new Student("student", 44);
 
-        serialize(people);
-        serialize(student);
+        //serialize(people);
+        //serialize(student);
 
-        Deserializer deser = new Deserializer("C:\\php\\People.xml");
-        Deserializer deser2 = new Deserializer("C:\\php\\Student.xml");
+        Deserializer deser = new Deserializer("com.kiberhach.People.xml");
+        //Deserializer deser2 = new Deserializer("Student.xml");
 
         System.out.println(deser.getInstace());
-        System.out.println(deser2.getInstace());
+        //System.out.println(deser2.getInstace());
 
     }
 
@@ -66,7 +66,7 @@ public class Main {
                 transformerFactory.newTransformer();
         DOMSource source = new DOMSource(doc);
         StreamResult result =
-                new StreamResult(new File("C:\\php\\"+className+".xml"));
+                new StreamResult(new File(className+".xml"));
         transformer.transform(source, result);
         // Output to console for testing
         StreamResult consoleResult =

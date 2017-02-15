@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Kubator:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Kubator_jar</output-path>
+    <root id="archive" name="Kubator.jar">
+      <element id="module-output" name="Kubator" />
+    </root>
+  </artifact>
+</component>

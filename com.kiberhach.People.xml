@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><Object type="com.kiberhach.People"><field name="name" type="String" value="testPeopleXml"/><field name="age" type="int" value="22"/><field name="salaty" type="String" value="tt"/></Object>
