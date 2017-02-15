@@ -10,11 +10,12 @@ import java.util.jar.JarFile;
  * Created by admin on 15.02.2017.
  */
 public class JarClassLoader extends ClassLoader {
-    private String jarFile = "Kubator.jar"; //Path to the jar file
+    private String jarFile; //Path to the jar file
     private Hashtable classes = new Hashtable(); //used to cache already defined classes
 
-    public JarClassLoader() {
+    public JarClassLoader(String jar) {
         super(JarClassLoader.class.getClassLoader()); //calls the parent class loader's constructor
+        this.jarFile = jar;
     }
 
     public Class loadClass(String className) throws ClassNotFoundException {
@@ -28,11 +29,6 @@ public class JarClassLoader extends ClassLoader {
         result = (Class) classes.get(className); //checks in cached classes
         if (result != null) {
             return result;
-        }
-
-        try {
-            return findSystemClass(className);
-        } catch (Exception e) {
         }
 
         try {

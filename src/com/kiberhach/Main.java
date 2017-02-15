@@ -21,6 +21,19 @@ public class Main {
         People people = new People("testPeopleXml",22,"tt");
         Student student = new Student("student", 44);
 
+        JarClassLoader loader = new JarClassLoader("Kubator.jar");
+        System.out.println(((loader.loadClass("com.kiberhach.Animal")) == null));
+
+        Class c = Class.forName("com.kiberhach.Animal");
+        c.newInstance();
+        System.out.println(c);
+
+        Downloader downloader = new Downloader("https://github.com/kiberhach/lesson-5-xml-serializer/raw/master/Kubator.jar");
+        downloader.download("MyJar.jar");
+
+        //System.exit(1);
+
+
         //serialize(people);
         //serialize(student);
 
@@ -33,6 +46,7 @@ public class Main {
     }
 
     public static void serialize(Object obj) throws Exception {
+
 
         Field[] fields = obj.getClass().getDeclaredFields();
 
@@ -60,13 +74,15 @@ public class Main {
             e1.appendChild(e);
         }
 
+        String fileName = "test/" + className+".xml";
+
         TransformerFactory transformerFactory =
                 TransformerFactory.newInstance();
         Transformer transformer =
                 transformerFactory.newTransformer();
         DOMSource source = new DOMSource(doc);
         StreamResult result =
-                new StreamResult(new File(className+".xml"));
+                new StreamResult(new File(fileName));
         transformer.transform(source, result);
         // Output to console for testing
         StreamResult consoleResult =
